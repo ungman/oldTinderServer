@@ -1,6 +1,5 @@
 package io.github.ungman.controller.utils;
 
-import io.github.ungman.domain.Profile;
 import io.github.ungman.domain.User;
 import org.springframework.web.bind.annotation.*;
 

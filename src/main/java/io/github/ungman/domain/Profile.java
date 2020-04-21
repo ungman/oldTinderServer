@@ -17,7 +17,7 @@ public class Profile {
     private String name;
     @Column(name = "GENDER")
     private String gender;
-    @Column(name="DESCRIPTION")
+    @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "ID_SHOWN")
     private Long idShown;

@@ -37,37 +37,38 @@ public class ProfileController implements RestAbstractController<Profile> {
     public Profile update(Profile obj) {
         return profileService.update(obj);
     }
+
     @Override
     public void delete(Profile obj) {
         profileService.delete(obj);
     }
 
     @GetMapping("{username}/show/current/")
-    public Profile showCurrent(@PathVariable String username){
+    public Profile showCurrent(@PathVariable String username) {
         return profileService.showCurrentProfile(userService.getByUsername(username).getIdUser());
     }
 
     @GetMapping("show/next/{username}")
-    public Profile shownNext(@PathVariable String username, Principal principal){
+    public Profile shownNext(@PathVariable String username, Principal principal) {
         boolean isAuth = null != principal;
-        Long idUser=-1L;
-        if(isAuth)
-            idUser=userService.getByUsername(username).getIdUser();
+        Long idUser = -1L;
+        if (isAuth)
+            idUser = userService.getByUsername(username).getIdUser();
         else
-            idUser=Long.parseLong(username);
+            idUser = Long.parseLong(username);
 
-        return profileService.showNextProfile(idUser,isAuth);
+        return profileService.showNextProfile(idUser, isAuth);
     }
 
     @DeleteMapping("{username}")
-    public void delete(@PathVariable(name = "username") String username){
-        Long idUser=userService.getByUsername(username).getIdUser();
+    public void delete(@PathVariable(name = "username") String username) {
+        Long idUser = userService.getByUsername(username).getIdUser();
         profileService.deleteById(idUser);
     }
 
     @PutMapping("{username}")
-    public void editProfile(@PathVariable(name = "username") String username,@RequestBody Profile profile){
-        Long idUser=userService.getByUsername(username).getIdUser();
+    public void editProfile(@PathVariable(name = "username") String username, @RequestBody Profile profile) {
+        Long idUser = userService.getByUsername(username).getIdUser();
         profile.setIdUser(idUser);
         profileService.editProfile(profile);
     }

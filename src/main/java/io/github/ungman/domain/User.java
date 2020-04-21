@@ -14,25 +14,25 @@ import java.util.Collection;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "USR")
-public class User   implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_USR")
     Long idUser;
-    @Column(name="USERNAME",unique = true)
+    @Column(name = "USERNAME", unique = true)
     String username;
-    @Column(name="password")
+    @Column(name = "password")
     String password;
 
-
-    public User setEmptyPassword(){
+    public User setEmptyPassword() {
         this.setPassword("");
         return this;
     }

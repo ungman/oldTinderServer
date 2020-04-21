@@ -65,10 +65,10 @@ public class ProfileMatchService {
     public void deleteMatches(Long idUser) {
 //        profileMatchRepo.deleteByIdFirstUserOrIdSecondUser(idUser,idUser);
         List<ProfileMatch> profileMatches = (List<ProfileMatch>) profileMatchRepo.findAll();
-        profileMatches=profileMatches.stream()
-                .filter(prm-> Objects.equals(prm.getIdSecondUser(), idUser) || Objects.equals(prm.getIdFirstUser(), idUser))
+        profileMatches = profileMatches.stream()
+                .filter(prm -> Objects.equals(prm.getIdSecondUser(), idUser) || Objects.equals(prm.getIdFirstUser(), idUser))
                 .collect(Collectors.toList());
-        while (profileMatches.size()>=1){
+        while (profileMatches.size() >= 1) {
             profileMatchRepo.delete(profileMatches.get(0));
             profileMatches.remove(0);
         }

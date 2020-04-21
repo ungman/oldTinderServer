@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="PROFILE_LIKE_MATCH")
+@Table(name = "PROFILE_LIKE_MATCH")
 public class ProfileMatch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

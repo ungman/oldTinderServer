@@ -1,7 +1,6 @@
 package io.github.ungman.controller;
 
 import io.github.ungman.controller.utils.RestAbstractController;
-import io.github.ungman.domain.Profile;
 import io.github.ungman.domain.User;
 import io.github.ungman.service.UserService;
 import lombok.AllArgsConstructor;
@@ -42,14 +41,14 @@ public class UserController implements RestAbstractController<User> {
     }
 
     @DeleteMapping("{username}")
-    public void delete(@PathVariable(name="username") String username){
-        Long idUser=userService.getByUsername(username).getIdUser();
+    public void delete(@PathVariable(name = "username") String username) {
+        Long idUser = userService.getByUsername(username).getIdUser();
         userService.deleteById(idUser);
     }
 
     @PutMapping("{username}")
-    public void editUser(@PathVariable(name = "username") String username,@RequestBody User user){
-        Long idUser=userService.getByUsername(username).getIdUser();
+    public void editUser(@PathVariable(name = "username") String username, @RequestBody User user) {
+        Long idUser = userService.getByUsername(username).getIdUser();
         user.setIdUser(idUser);
         userService.editUser(user);
     }

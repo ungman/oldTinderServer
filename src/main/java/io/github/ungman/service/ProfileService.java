@@ -47,7 +47,7 @@ public class ProfileService {
     }
 
     public Profile showCurrentProfile(Long id) {
-        Long idShown = getOne(id).getIdShown();
+        Long idShown = getFullProfile(id).getIdShown();
         Profile profile = getOne(idShown);
         return profile;
     }
@@ -61,15 +61,15 @@ public class ProfileService {
     public Profile getNotShowedProfileAuthUser(Long id) {
         Profile profile = profileRepo.findById(id).get();
         String gender = profile.getGender();
-        Long idShown = profile.getIdShown()==null?-1:profile.getIdShown();
+        Long idShown = profile.getIdShown() == null ? -1 : profile.getIdShown();
         Profile profile1 = getList().stream()
                 .filter(prf -> prf.getGender().compareTo(gender) != 0 && prf.getIdUser() > idShown)
                 .findFirst().orElse(null);
         if (profile1 != null) {
             profile.setIdShown(profile1.getIdUser());
             save(profile);
-        }else {
-            profile1=new Profile();
+        } else {
+            profile1 = new Profile();
             profile1.setIdUser(-1L);
         }
         return profile1;
@@ -95,7 +95,7 @@ public class ProfileService {
     }
 
     public void deleteById(Long idUser) {
-        Profile profile=getOne(idUser);
+        Profile profile = getOne(idUser);
         profileRepo.delete(profile);
     }
 
